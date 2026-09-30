@@ -140,8 +140,19 @@
   .web-insignia svg { width: 24px; height: 24px; }
   .web-insignia span { display: flex; flex-direction: column; font: 600 18px/1.05 "Fira Sans", sans-serif; }
   .web-insignia small { font-size: 11px; font-weight: 400; opacity: .8; }
-  .geo { display: grid; grid-template-columns: 44px 1fr; gap: 16px; align-items: start; margin-top: 28px; background: var(--soft-blue); border: 1px solid #c9d8fb; border-radius: 18px; padding: 22px; max-width: 760px; }
-  .geo .ico { margin: 0; background: #fff; }
+  .geo { display: grid; grid-template-columns: 1fr 1.1fr; gap: 28px; align-items: center; margin-top: 28px; background: var(--soft-blue); border: 1px solid #c9d8fb; border-radius: 22px; padding: 26px; }
+  .geo .ico { margin: 0 0 12px; background: #fff; }
+  .mapa { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 10 / 7; box-shadow: 0 10px 24px rgba(15, 23, 42, .1); }
+  .mapa svg { width: 100%; height: 100%; display: block; }
+  .bloqueo { position: absolute; left: 12px; right: 12px; top: 12px; display: grid; grid-template-columns: 34px 1fr; gap: 10px; align-items: center; background: rgba(255, 255, 255, .88); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-radius: 14px; padding: 10px 12px; box-shadow: 0 6px 18px rgba(15, 23, 42, .12); }
+  .bloqueo img { width: 34px; height: 34px; border-radius: 8px; object-fit: cover; background: #fff; }
+  .bloqueo b { display: block; font-size: 12px; color: var(--muted); font-weight: 600; }
+  .bloqueo span { display: block; font-size: 14px; line-height: 1.3; color: var(--ink); }
+  .radio { transform-origin: 200px 140px; animation: latido 2.8s ease-in-out infinite; }
+  .clienta { animation: acercarse 5s ease-in-out infinite alternate; }
+  @keyframes latido { 0%, 100% { transform: scale(.94); opacity: .75; } 50% { transform: scale(1.04); opacity: 1; } }
+  @keyframes acercarse { from { transform: translate(90px, 60px); } to { transform: translate(0, 0); } }
+  @media (prefers-reduced-motion: reduce) { .radio, .clienta { animation: none; } }
   .geo h3 { font-size: 19px; font-weight: 800; margin-bottom: 6px; }
   .geo p { color: var(--ink2); font-size: 16px; }
 
@@ -155,6 +166,9 @@
   .auto.destacado { grid-column: span 2; background: var(--soft-blue); border-color: #c9d8fb; }
   .prog.destacado { background: var(--soft-coral); border-color: #ffd2c2; }
   .prog.destacado b { color: #c2410c; }
+  .pi { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: var(--soft-teal); color: var(--teal); margin-bottom: 12px; font-style: normal; }
+  .pi svg { width: 22px; height: 22px; }
+  .prog.destacado .pi { background: #fff; color: #c2410c; }
 
   /* Chat de ejemplo */
   .chat { background: #e8e1d7; border-radius: 20px; padding: 20px; display: grid; gap: 10px; }
@@ -209,7 +223,8 @@
     section { padding: 52px 0; }
     .wrap { padding: 0 16px; }
     .para { display: none; }
-    .compara, .grilla, .pasos, .autos, .progs { grid-template-columns: 1fr; }
+    .compara, .grilla, .pasos, .autos, .progs, .geo { grid-template-columns: 1fr; }
+    .geo { padding: 18px; }
     .auto.destacado { grid-column: auto; }
     .numeros { grid-template-columns: 1fr 1fr; gap: 12px; }
     .num { padding: 16px; }
@@ -308,10 +323,33 @@
       </a>
     </div>
     <div class="geo fi">
-      <div class="ico azul"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.99-5.54 10.19-7.4 11.8a1 1 0 0 1-1.2 0C9.54 20.19 4 14.99 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></div>
-      <div>
-        <h3>En iPhone, aparece sola cuando pasa cerca</h3>
-        <p>Si la clienta pasa cerca de una sucursal de Guzel, su tarjeta le aparece en la pantalla bloqueada. Un recordatorio justo cuando está por la zona, sin mandar ningún aviso.</p>
+      <div class="geo-txt">
+        <div class="ico azul"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.99-5.54 10.19-7.4 11.8a1 1 0 0 1-1.2 0C9.54 20.19 4 14.99 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3>En iPhone, cuando pasa cerca de Guzel</h3>
+        <p>Cada tarjeta lleva la ubicación de las sucursales. Cuando la clienta pasa cerca de una, el iPhone puede mostrarle su tarjeta en la pantalla bloqueada: un recordatorio justo cuando está por la zona, sin mandar ningún aviso.</p>
+      </div>
+      <div class="mapa" role="img" aria-label="Mapa ilustrado: una clienta camina cerca de una sucursal de Guzel y su iPhone le muestra la tarjeta en la pantalla bloqueada">
+        <svg viewBox="0 0 400 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="400" height="280" fill="#eef1ec"/>
+          <rect x="250" y="20" width="120" height="80" rx="10" fill="#d7ecd9"/>
+          <rect x="30" y="180" width="90" height="70" rx="10" fill="#d7ecd9"/>
+          <g stroke="#ffffff" stroke-width="16" stroke-linecap="round">
+            <line x1="0" y1="140" x2="400" y2="140"/><line x1="160" y1="0" x2="160" y2="280"/>
+            <line x1="0" y1="60" x2="400" y2="30"/><line x1="300" y1="140" x2="340" y2="280"/>
+          </g>
+          <g stroke="#e3e6df" stroke-width="7" stroke-linecap="round">
+            <line x1="0" y1="215" x2="400" y2="230"/><line x1="70" y1="0" x2="60" y2="140"/><line x1="230" y1="140" x2="235" y2="280"/>
+          </g>
+          <circle class="radio" cx="200" cy="140" r="78" fill="rgba(37,99,235,.10)" stroke="#2563eb" stroke-width="2" stroke-dasharray="6 6"/>
+          <path d="M200 96c-15 0-26 11-26 25 0 19 26 43 26 43s26-24 26-43c0-14-11-25-26-25z" fill="#2f8a7c"/>
+          <circle cx="200" cy="121" r="10" fill="#fff"/>
+          <text x="200" y="192" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="800" font-size="13" fill="#0f172a">Guzel Palermo</text>
+          <g class="clienta"><circle cx="258" cy="172" r="12" fill="rgba(37,99,235,.25)"/><circle cx="258" cy="172" r="7" fill="#2563eb" stroke="#fff" stroke-width="2.5"/></g>
+        </svg>
+        <div class="bloqueo">
+          <img src="https://api.fideliza.mflowsuite.com/api/v1/publico/imagenes/logo-b0ea3ecf6b499a66.png" alt="">
+          <div><b>Guzel · Wallet</b><span>Estás cerca de Guzel Palermo. Tu tarjeta: 3 de 5 sellos.</span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -406,7 +444,7 @@
       <div class="auto fi"><b>Feliz cumple</b><span>El día de su cumpleaños, con un regalo.</span></div>
       <div class="auto fi"><b>Tu cupón vence</b><span>Unos días antes, para que no lo pierda.</span></div>
       <div class="auto fi"><b>¿Cómo te fue?</b><span>Unas horas después de cada visita.</span></div>
-      <div class="auto destacado fi"><b>Si pasa cerca</b><span>En el iPhone, cuando pasa cerca de una sucursal, la tarjeta le aparece en la pantalla bloqueada.</span></div>
+      <div class="auto destacado fi"><b>Si pasa cerca</b><span>En el iPhone, cuando pasa cerca de una sucursal, la tarjeta le puede aparecer en la pantalla bloqueada.</span></div>
     </div>
   </div>
 </section>
@@ -419,11 +457,11 @@
       <p class="lead">Cinco tipos de programa. Se puede cambiar cuando quieras y la tarjeta de cada clienta se actualiza sola.</p>
     </div>
     <div class="progs">
-      <div class="prog fi"><b>Sellos</b><span>Cada visita suma un sello. «Con 5, un perfilado gratis.»</span></div>
-      <div class="prog fi"><b>Puntos</b><span>Cada servicio suma puntos y los canjea por premios.</span></div>
-      <div class="prog fi"><b>Niveles</b><span>Bronce, Plata, Oro: cuanto más viene, más descuento.</span></div>
-      <div class="prog fi"><b>Cashback</b><span>Le devolvés un porcentaje de cada compra para la próxima.</span></div>
-      <div class="prog destacado fi"><b>Pases</b><span>Vendés un pack de 5 visitas por adelantado: la plata entra hoy y cada visita descuenta un uso.</span></div>
+      <div class="prog fi"><i class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 22h14"/><path d="M19.27 13.73A2.5 2.5 0 0 0 17.5 13h-11A2.5 2.5 0 0 0 4 15.5V17a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-1.5c0-.66-.26-1.3-.73-1.77Z"/><path d="M14 13V8.5C14 7 15 7 15 5a3 3 0 0 0-3-3c-1.66 0-3 1-3 3s1 2 1 3.5V13"/></svg></i><b>Sellos</b><span>«10 visitas, la 11 gratis». El más simple de entender.</span></div>
+      <div class="prog fi"><i class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg></i><b>Puntos</b><span>Cada servicio suma puntos que se canjean por premios.</span></div>
+      <div class="prog fi"><i class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg></i><b>Niveles</b><span>Cuanto más viene, más descuento fijo tiene (Bronce, Plata, Oro).</span></div>
+      <div class="prog fi"><i class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg></i><b>Cashback</b><span>Un % de cada compra vuelve como saldo en pesos para la próxima.</span></div>
+      <div class="prog destacado fi"><i class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg></i><b>Pases prepagos</b><span>Packs de visitas («5 perfilados»): la plata entra hoy y cada visita descuenta un uso.</span></div>
     </div>
   </div>
 </section>
