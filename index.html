@@ -104,6 +104,54 @@
   .hoy .conclusion { color: #9a3412; }
   .nuevo .conclusion { color: var(--teal); }
 
+  /* Los 3 pasos de Recompensalo, animados al aparecer */
+  .marca-txt { font: 800 24px/1 "Manrope", sans-serif; letter-spacing: -0.035em; color: var(--ink); }
+  .marca-txt b { color: var(--coral); }
+  .flujo { position: relative; display: grid; gap: 18px; }
+  .flujo::before { content: ""; position: absolute; left: 19px; top: 20px; bottom: 20px; width: 3px; border-radius: 3px; background: #e2ece9; }
+  .flujo::after { content: ""; position: absolute; left: 19px; top: 20px; width: 3px; height: 0; border-radius: 3px; background: linear-gradient(var(--coral), var(--blue)); }
+  .vis .flujo::after { animation: llenar 1.8s .2s ease-out forwards; }
+  .f-paso { position: relative; display: grid; grid-template-columns: 40px 92px 1fr; gap: 14px; align-items: center; }
+  .f-num { position: relative; z-index: 1; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: #fff; border: 3px solid #e2ece9; color: var(--muted); font: 800 18px/1 "Manrope", sans-serif; }
+  .vis .f-paso .f-num { animation: prender .45s ease-out forwards; }
+  .vis .f-paso:nth-child(2) .f-num { animation-delay: .7s; }
+  .vis .f-paso:nth-child(3) .f-num { animation-delay: 1.4s; }
+  .f-paso p { color: var(--ink2); font-size: 15px; line-height: 1.4; }
+  .f-paso p b { color: var(--ink); }
+  .f-vis { position: relative; height: 60px; border-radius: 14px; background: #f6f7f9; border: 1px solid var(--line); overflow: hidden; display: grid; place-items: center; }
+  .f-qr svg { width: 40px; height: 40px; }
+  .f-linea { position: absolute; left: 8px; right: 8px; top: 8px; height: 3px; border-radius: 3px; background: var(--coral); box-shadow: 0 0 10px var(--coral); animation: escanear 1.6s ease-in-out infinite alternate; }
+  .f-form { gap: 5px; padding: 8px; align-content: center; justify-items: stretch; }
+  .f-campo { display: block; height: 18px; border-radius: 5px; background: #fff; border: 1px solid var(--line); padding: 0 3px; overflow: hidden; }
+  .f-tipeo { display: inline-block; font: 600 10px/16px "Fira Sans", sans-serif; font-style: normal; max-width: max-content; color: var(--ink); white-space: nowrap; overflow: hidden; width: 0; border-right: 2px solid var(--blue); }
+  .vis .f-t1 { animation: tipear 1s .9s steps(9) forwards, caret .8s step-end infinite; }
+  .vis .f-t2 { animation: tipear 1.1s 1.8s steps(12) forwards, caret .8s step-end infinite; }
+  .f-wallet { padding: 6px; gap: 3px; align-content: start; justify-items: stretch; }
+  .f-otra { display: block; height: 10px; border-radius: 4px; background: #3b82f6; }
+  .f-otra.b { background: #475569; }
+  .f-tarjeta { display: flex; align-items: center; justify-content: center; height: 22px; border-radius: 5px; background: var(--guzel-bg); border: 1px solid #f3c7ea; transform: translateY(40px); opacity: 0; }
+  .f-tarjeta img { height: 16px; width: 16px; object-fit: contain; }
+  .vis .f-tarjeta { animation: guardar .6s 2.2s cubic-bezier(.2, 1.4, .4, 1) forwards; }
+  .f-listo { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; padding: 8px 16px; border-radius: 999px; background: var(--teal); color: #fff; font: 800 16px/1.2 "Manrope", sans-serif; transform: scale(0); }
+  .f-listo svg { width: 18px; height: 18px; }
+  .vis .f-listo { animation: sellar .5s 2.7s cubic-bezier(.2, 1.6, .4, 1) forwards; }
+  @keyframes llenar { to { height: calc(100% - 40px); } }
+  @keyframes prender { 0% { transform: scale(1); } 50% { transform: scale(1.18); } 100% { transform: scale(1); background: linear-gradient(135deg, var(--coral), var(--blue)); border-color: transparent; color: #fff; box-shadow: 0 6px 16px rgba(37, 99, 235, .3); } }
+  @keyframes escanear { from { top: 8px; } to { top: calc(100% - 11px); } }
+  @keyframes tipear { to { width: 100%; } }
+  @keyframes caret { 50% { border-color: transparent; } }
+  @keyframes guardar { to { transform: none; opacity: 1; } }
+  @keyframes sellar { 0% { transform: scale(0) rotate(-8deg); } 100% { transform: scale(1) rotate(0); } }
+  @media (prefers-reduced-motion: reduce) {
+    .flujo::after, .f-linea, .f-tipeo, .f-tarjeta, .f-listo, .f-num { animation: none !important; }
+    .flujo::after { height: calc(100% - 40px); }
+    .f-num { background: linear-gradient(135deg, var(--coral), var(--blue)); border-color: transparent; color: #fff; }
+    .f-tipeo { width: 100%; border-right: 0; }
+    .f-tarjeta { transform: none; opacity: 1; }
+    .f-listo { transform: none; }
+  }
+  @media (max-width: 640px) { .f-paso { grid-template-columns: 40px 86px 1fr; gap: 10px; } }
+
   /* Beneficios */
   .grilla { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 32px; }
   .ben { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 24px; transition: box-shadow .2s ease, border-color .2s ease; }
@@ -376,13 +424,35 @@
         <p class="conclusion">Cada paso es una excusa para no sumarse.</p>
       </div>
       <div class="col nuevo fi">
-        <h3>Con Recompensalo</h3>
-        <ol>
-          <li>Escanea el QR del mostrador o apoya el celular en el sticker</li>
-          <li>Pone su nombre y su celular</li>
-          <li>La guarda en su Wallet, junto a sus tarjetas</li>
-        </ol>
-        <p class="conclusion">Listo. Anda en iPhone y en Android, y no ocupa lugar.</p>
+        <h3>Con <span class="marca-txt">recompensal<b>o</b></span></h3>
+        <div class="flujo">
+          <div class="f-paso">
+            <span class="f-num">1</span>
+            <div class="f-vis f-qr" aria-hidden="true">
+              <svg viewBox="0 0 21 21" shape-rendering="crispEdges"><path fill="#0f172a" d="M0 0h7v7H0zM2 2v3h3V2zM14 0h7v7h-7zm2 2v3h3V2zM0 14h7v7H0zm2 2v3h3v-3zM9 0h2v2H9zm0 4h3v2H9zM8 8h3v3H8zm5 0h2v2h-2zm4 1h4v2h-4zM9 13h2v4H9zm4-1h3v3h-3zm5 2h3v2h-3zm-5 5h2v2h-2zm4 0h4v2h-4zM0 9h2v3H0zm4 0h2v2H4z"/></svg>
+              <i class="f-linea"></i>
+            </div>
+            <p><b>Escanea el QR</b> del mostrador o apoya el celular en el sticker</p>
+          </div>
+          <div class="f-paso">
+            <span class="f-num">2</span>
+            <div class="f-vis f-form" aria-hidden="true">
+              <span class="f-campo"><em class="f-tipeo f-t1">Ana López</em></span>
+              <span class="f-campo"><em class="f-tipeo f-t2">11 5555 1234</em></span>
+            </div>
+            <p><b>Pone su nombre y su celular</b></p>
+          </div>
+          <div class="f-paso">
+            <span class="f-num">3</span>
+            <div class="f-vis f-wallet" aria-hidden="true">
+              <span class="f-otra"></span><span class="f-otra b"></span>
+              <span class="f-tarjeta"><img src="https://api.fideliza.mflowsuite.com/api/v1/publico/imagenes/logo-b0ea3ecf6b499a66.png" alt=""></span>
+            </div>
+            <p><b>La guarda en su Wallet</b>, junto a sus tarjetas</p>
+          </div>
+        </div>
+        <p class="f-listo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>¡Lista en menos de 1 minuto!</p>
+        <p class="conclusion">Anda en iPhone y en Android, y no ocupa lugar.</p>
       </div>
     </div>
   </div>
