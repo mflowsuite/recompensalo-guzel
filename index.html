@@ -129,6 +129,22 @@
   .barra i { display: block; height: 100%; border-radius: 6px; background: var(--teal); }
   .ranking small { display: block; margin-top: 10px; color: var(--muted); font-size: 13px; }
 
+  /* Dónde funciona: insignias oficiales (sin modificar) y geo */
+  .donde { padding-top: 24px; }
+  .insignias { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 26px; }
+  .insignias a { display: inline-flex; border-radius: 10px; transition: box-shadow .2s ease; cursor: pointer; }
+  .insignias a:hover { box-shadow: 0 6px 16px rgba(15, 23, 42, .12); }
+  .insignias a:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+  .insignias img { height: 48px; width: auto; display: block; }
+  .web-insignia { align-items: center; gap: 10px; height: 48px; padding: 0 16px; background: var(--ink); color: #fff; text-decoration: none; border-radius: 10px; }
+  .web-insignia svg { width: 24px; height: 24px; }
+  .web-insignia span { display: flex; flex-direction: column; font: 600 18px/1.05 "Fira Sans", sans-serif; }
+  .web-insignia small { font-size: 11px; font-weight: 400; opacity: .8; }
+  .geo { display: grid; grid-template-columns: 44px 1fr; gap: 16px; align-items: start; margin-top: 28px; background: var(--soft-blue); border: 1px solid #c9d8fb; border-radius: 18px; padding: 22px; max-width: 760px; }
+  .geo .ico { margin: 0; background: #fff; }
+  .geo h3 { font-size: 19px; font-weight: 800; margin-bottom: 6px; }
+  .geo p { color: var(--ink2); font-size: 16px; }
+
   /* Automáticos y programas */
   .cita { margin: 4px 0 14px; font: 700 clamp(20px, 2.6vw, 26px)/1.35 "Manrope", sans-serif; color: var(--ink); border-left: 4px solid var(--coral); padding-left: 16px; }
   .autos, .progs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 28px; }
@@ -271,6 +287,35 @@
     </div>
   </main>
 </div>
+
+<section class="donde">
+  <div class="wrap">
+    <div class="fi donde-cab">
+      <span class="eyebrow">En cualquier celular</span>
+      <h2>Tu tarjeta, donde ya están sus tarjetas</h2>
+      <p class="lead">En el iPhone va a Apple Wallet, en Android a Google Wallet, y en cualquier celular funciona también como tarjeta web.</p>
+    </div>
+    <div class="insignias fi">
+      <a href="https://fideliza.mflowsuite.com/alta" target="_blank" rel="noopener" aria-label="Agregar a Apple Wallet: probar la tarjeta de Guzel">
+        <img src="apple-wallet.svg" alt="Agregar a Apple Wallet" width="151" height="48">
+      </a>
+      <a href="https://fideliza.mflowsuite.com/alta" target="_blank" rel="noopener" aria-label="Agregar a Google Wallet: probar la tarjeta de Guzel">
+        <img src="google-wallet.svg" alt="Agregar a Google Wallet" width="209" height="48">
+      </a>
+      <a class="web-insignia" href="https://fideliza.mflowsuite.com/alta" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+        <span><small>Abrir como</small>Tarjeta web</span>
+      </a>
+    </div>
+    <div class="geo fi">
+      <div class="ico azul"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.99-5.54 10.19-7.4 11.8a1 1 0 0 1-1.2 0C9.54 20.19 4 14.99 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></div>
+      <div>
+        <h3>En iPhone, aparece sola cuando pasa cerca</h3>
+        <p>Si la clienta pasa cerca de una sucursal de Guzel, su tarjeta le aparece en la pantalla bloqueada. Un recordatorio justo cuando está por la zona, sin mandar ningún aviso.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section id="app">
   <div class="wrap">
@@ -481,7 +526,7 @@
     </div>
     <div class="pasos">
       <div class="paso fi"><b>1</b><h3>La armamos con la marca Guzel</h3><p>Colores, logo, sellos y premios. Vos elegís el programa: sellos, puntos, niveles, cashback o pases.</p></div>
-      <div class="paso fi"><b>2</b><h3>QR y stickers en cada sucursal</h3><p>Los dejamos listos en las 14, con una explicación corta para el equipo del mostrador.</p></div>
+      <div class="paso fi"><b>2</b><h3>Un QR por sucursal</h3><p>Cada local tiene su QR para que las clientas se sumen: se imprime o se muestra en una pantalla. Si querés, también un sticker para apoyar el celular. Al equipo le alcanza con una explicación corta.</p></div>
       <div class="paso fi"><b>3</b><h3>Pasamos a tus clientas</h3><p>Si Guzel Point nos deja exportarlas, importamos las clientas que ya tenés y les avisamos que su tarjeta nueva las espera.</p></div>
     </div>
 
