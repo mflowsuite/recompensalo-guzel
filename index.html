@@ -108,11 +108,11 @@
   .marca-txt { font: 800 24px/1 "Manrope", sans-serif; letter-spacing: -0.035em; color: var(--ink); }
   .marca-txt b { color: var(--coral); }
   .flujo { position: relative; display: grid; gap: 18px; }
-  .flujo::before { content: ""; position: absolute; left: 19px; top: 20px; bottom: 20px; width: 3px; border-radius: 3px; background: #e2ece9; }
-  .flujo::after { content: ""; position: absolute; left: 19px; top: 20px; width: 3px; height: 0; border-radius: 3px; background: linear-gradient(var(--coral), var(--blue)); }
+  .flujo::before { content: ""; position: absolute; left: 19px; top: 20px; bottom: 20px; width: 2px; background: var(--line); }
+  .flujo::after { content: ""; position: absolute; left: 19px; top: 20px; width: 2px; height: 0; background: var(--blue); }
   .vis .flujo::after { animation: llenar 1.8s .2s ease-out forwards; }
   .f-paso { position: relative; display: grid; grid-template-columns: 40px 92px 1fr; gap: 14px; align-items: center; }
-  .f-num { position: relative; z-index: 1; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: #fff; border: 3px solid #e2ece9; color: var(--muted); font: 800 18px/1 "Manrope", sans-serif; }
+  .f-num { position: relative; z-index: 1; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: #fff; border: 2px solid var(--line); color: var(--muted); font: 800 17px/1 "Manrope", sans-serif; transition: background-color .3s ease; }
   .vis .f-paso .f-num { animation: prender .45s ease-out forwards; }
   .vis .f-paso:nth-child(2) .f-num { animation-delay: .7s; }
   .vis .f-paso:nth-child(3) .f-num { animation-delay: 1.4s; }
@@ -136,7 +136,7 @@
   .f-listo svg { width: 18px; height: 18px; }
   .vis .f-listo { animation: sellar .5s 2.7s cubic-bezier(.2, 1.6, .4, 1) forwards; }
   @keyframes llenar { to { height: calc(100% - 40px); } }
-  @keyframes prender { 0% { transform: scale(1); } 50% { transform: scale(1.18); } 100% { transform: scale(1); background: linear-gradient(135deg, var(--coral), var(--blue)); border-color: transparent; color: #fff; box-shadow: 0 6px 16px rgba(37, 99, 235, .3); } }
+  @keyframes prender { 0% { transform: scale(1); } 50% { transform: scale(1.12); } 100% { transform: scale(1); background: var(--blue); border-color: var(--blue); color: #fff; } }
   @keyframes escanear { from { top: 8px; } to { top: calc(100% - 11px); } }
   @keyframes tipear { to { width: 100%; } }
   @keyframes caret { 50% { border-color: transparent; } }
@@ -145,7 +145,7 @@
   @media (prefers-reduced-motion: reduce) {
     .flujo::after, .f-linea, .f-tipeo, .f-tarjeta, .f-listo, .f-num { animation: none !important; }
     .flujo::after { height: calc(100% - 40px); }
-    .f-num { background: linear-gradient(135deg, var(--coral), var(--blue)); border-color: transparent; color: #fff; }
+    .f-num { background: var(--blue); border-color: var(--blue); color: #fff; }
     .f-tipeo { width: 100%; border-right: 0; }
     .f-tarjeta { transform: none; opacity: 1; }
     .f-listo { transform: none; }
